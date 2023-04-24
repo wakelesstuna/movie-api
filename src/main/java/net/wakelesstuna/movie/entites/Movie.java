@@ -23,15 +23,16 @@ import java.util.List;
 @Table(name = "movies")
 @NoArgsConstructor
 @Getter
-@Setter
 @GenericGenerator(name = "UUID", strategy = "uuid2")
 public class Movie {
 
     @Id
     @GeneratedValue(generator = "UUID")
     private String id;
+    @Setter
     private String title;
-    private String releaseYear;
+    @Setter
+    private Integer releaseYear;
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
     @CreationTimestamp
