@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: movie-api
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC # This will write time in utc format in the database
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5430/movie-api
+    username: postgres
+    password: letmein
+    driverClassName: org.postgresql.Driver
+
+server:
+  port: 9000
