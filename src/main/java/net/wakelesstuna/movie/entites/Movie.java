@@ -39,4 +39,8 @@ public class Movie {
     private LocalDateTime created;
     @UpdateTimestamp
     private Instant updated;
+
+    public void addReview(final Review review) {
+        this.reviews.add(review);
+    }
 }

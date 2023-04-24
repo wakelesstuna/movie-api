@@ -2,8 +2,10 @@ package net.wakelesstuna.movie.services;
 
 import lombok.RequiredArgsConstructor;
 import net.wakelesstuna.movie.entites.Movie;
+import net.wakelesstuna.movie.entites.Review;
 import net.wakelesstuna.movie.entites.requests.CreateMovieRequest;
 import net.wakelesstuna.movie.entites.responses.MovieResponse;
+import net.wakelesstuna.movie.entites.responses.ReviewResponse;
 import net.wakelesstuna.movie.repositories.MovieRepository;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,10 @@ public class MovieService {
     }
 
     private MovieResponse mapMovieResponse(final Movie movie) {
-        return new MovieResponse(movie.getId(), movie.getTitle(), movie.getReleaseYear(), movie.getReviews());
+        return new MovieResponse(movie.getId(), movie.getTitle(), movie.getReleaseYear(), movie.getReviews().stream().map(this::mapReviewResponse).toList());
+    }
+
+    private ReviewResponse mapReviewResponse(final Review review) {
+        return new ReviewResponse(review.getId(), review.getContent(), review.getScore());
     }
 }
