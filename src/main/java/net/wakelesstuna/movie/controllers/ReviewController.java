@@ -24,7 +24,7 @@ public class ReviewController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public ReviewResponse createReview(@RequestBody CreateReviewRequest request) {
+    public ReviewResponse createReview(@RequestBody final CreateReviewRequest request) {
         return reviewService.createReview(request);
     }
 
