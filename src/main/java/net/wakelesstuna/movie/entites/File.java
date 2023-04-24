@@ -1,11 +1,9 @@
 package net.wakelesstuna.movie.entites;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,33 +14,26 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "movies")
+@Table(name = "files")
 @NoArgsConstructor
 @Getter
 @GenericGenerator(name = "UUID", strategy = "uuid2")
-public class Movie {
+public class File {
 
     @Id
     @GeneratedValue(generator = "UUID")
     private String id;
     @Setter
-    private String title;
+    private String name;
     @Setter
-    private Integer releaseYear;
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<>();
+    private String type;
+    @Lob
     @Setter
-    private String imageId;
+    private byte[] content;
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp
     private Instant updated;
-
-    public void addReview(final Review review) {
-        this.reviews.add(review);
-    }
 }

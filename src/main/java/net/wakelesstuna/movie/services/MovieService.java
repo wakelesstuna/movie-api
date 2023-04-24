@@ -40,7 +40,11 @@ public class MovieService {
     }
 
     private MovieResponse mapMovieResponse(final Movie movie) {
-        return new MovieResponse(movie.getId(), movie.getTitle(), movie.getReleaseYear(), movie.getReviews().stream().map(this::mapReviewResponse).toList());
+        return new MovieResponse(movie.getId(),
+                movie.getTitle(),
+                movie.getReleaseYear(),
+                movie.getImageId(),
+                movie.getReviews().stream().map(this::mapReviewResponse).toList());
     }
 
     private ReviewResponse mapReviewResponse(final Review review) {
